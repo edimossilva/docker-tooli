@@ -13,6 +13,7 @@ services:
       PGDATA: /data/postgres
     volumes:
       - postgres_volume:/data/postgres
+      - ./tooli_rsync/dump:/home
     ports:
       - "5432:5432"
     networks:
@@ -46,7 +47,8 @@ services:
     depends_on:
       - db
     tty: true
-    command: rails s -b 0.0.0.0
+    # command: rails s -b 0.0.0.0
+    command: sh
     ports:
       - "3000:3000"
     networks:
@@ -64,6 +66,15 @@ volumes:
 # docker-compose exec tooli rake db:create db:migrate
 # docker-compose exec tooli rspec
 # localhost:3000
+
+  # default: &default
+  # adapter: postgresql
+  # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  # timeout: 5000
+  # schema_search_path: 'dev,shared_extensions'
+  # host: db
+  # username: postgres
+  # password: postgrespassword
 
 # test:
 #   <<: *default

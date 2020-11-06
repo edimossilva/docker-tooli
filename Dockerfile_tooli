@@ -32,6 +32,11 @@ RUN apk update && apk add --no-cache nmap && \
   ttf-freefont \
   nss
 
+# webp
+# RUN apk add --update --no-cache webp
+RUN apk add ca-certificates ffmpeg libwebp libwebp-tools && \
+  rm -rf /var/cache/*
+
 # config app home path
 ENV APP_HOME /app
 RUN mkdir $APP_HOME
